@@ -241,7 +241,7 @@ unsigned TryOptimize(
       if (w * h <= 16 && stats.key) stats.alpha = 1;
       state.encoder.auto_convert = 0;
       state.info_png.color.colortype = (stats.alpha ? (stats.colored ? LCT_RGBA : LCT_GREY_ALPHA) : (stats.colored ? LCT_RGB : LCT_GREY));
-      state.info_png.color.bitdepth = 8;
+      state.info_png.color.bitdepth = (stats.alpha || stats.colored) ? 8 : stats.bits;
       state.info_png.color.key_defined = (stats.key && !stats.alpha);
       if (state.info_png.color.key_defined) {
         state.info_png.color.key_defined = 1;
